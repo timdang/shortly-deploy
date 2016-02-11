@@ -10,7 +10,7 @@
   "license": "Proprietary",
   "private": true,
   "scripts": {
-    "postinstall": "grunt upload",
+    "postinstall": "grunt upload -prod",
     "start": "node index.js"
   },
   "dependencies": {
