@@ -40,5 +40,5 @@
   "scripts": {
     "postinstall": "grunt build",
     "start": "node index.js"
-  },
+  }
 }
