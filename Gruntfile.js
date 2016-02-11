@@ -77,8 +77,9 @@ module.exports = function(grunt) {
 
     shell: {
       prodServer: {
+        command: 'grunt deploy'
       }
-    },
+    }
   });
 
   grunt.loadNpmTasks('grunt-contrib-uglify');
@@ -108,22 +109,24 @@ module.exports = function(grunt) {
   ////////////////////////////////////////////////////
 
   grunt.registerTask('test', [
-    'mochaTest'
+    'mochaTest', 'jshint'
   ]);
 
   grunt.registerTask('build', [
+    'concat', 'uglify', 'cssmin'
   ]);
 
   grunt.registerTask('upload', function(n) {
     if(grunt.option('prod')) {
       // add your production server task here
+      
     } else {
       grunt.task.run([ 'server-dev' ]);
     }
   });
 
   grunt.registerTask('deploy', [
-    'concat', 'uglify', 'cssmin', 'jshint', 'mochaTest'
+
   ]);
 
 
