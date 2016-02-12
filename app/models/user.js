@@ -1,7 +1,7 @@
 var bcrypt = require('bcrypt-nodejs');
 var Promise = require('bluebird');
 var mongoose = require('mongoose');
-// var db = require('../config');
+var db = require('../config');
 
 var userSchema = mongoose.Schema({
   username: {
@@ -30,9 +30,11 @@ userSchema.pre('save', function(next) {
   return cipher(this.password, null, null).bind(this)
     .then(function(hash) {
       this.password = hash;
+      next();
     });
 });
 
+module.exports = User;
 // var User = db.Model.extend({
 //   tableName: 'users',
 //   hasTimestamps: true,
@@ -53,4 +55,3 @@ userSchema.pre('save', function(next) {
 //   }
 // });
 //
-// module.exports = User;
