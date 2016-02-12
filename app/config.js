@@ -1,3 +1,17 @@
+var mongoose = require('mongoose');
+
+var dbAddress = process.env.MONGOLAB_URI || 'mongodb://localhost/shortly'
+mongoose.connect(dbAddress);
+
+var db = mongoose.connection;
+
+db.on('error', console.error.bind(console, 'connection error: '));
+db.once('open', function() {
+  console.log('Mongodb connection open.')
+});
+
+module.exports = db;
+
 //var Bookshelf = require('bookshelf');
 //var path = require('path');
 // var MongoClient = require('mongodb').MongoClient;
@@ -11,11 +25,6 @@
 //   console.log('Connected correctly to server.');
 //   db.close();
 // });
-
-var mongoose = require('mongoose');
-mongoose.connect('mongodb://localhost/shortly');
-
-var db = mongoose.connection;
 
 // var db = Bookshelf.initialize({
 //   client: 'sqlite3',
@@ -57,5 +66,3 @@ var db = mongoose.connection;
 //     });
 //   }
 // });
-
-module.exports = db;
